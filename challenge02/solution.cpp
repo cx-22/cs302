@@ -19,14 +19,16 @@ using namespace std;
 int main(int argc, char *argv[]) {
 	int size = 0;
 	int solutionSize = 0;
-	int minDiff = 2147483646;
+	int minDiff = 2147483647;
 	int tempDiff = 0;
 	int i = 0;
+
 	vector<int> list;
 	vector<int> solutionList;
 
-
 	while (cin >> size){
+
+		// Reset variables each loop
 		list.clear();
 		list.resize(size);
 		solutionList.clear();
@@ -41,6 +43,9 @@ int main(int argc, char *argv[]) {
 
 		for (i = 0; i < size - 1; ++i){
 			tempDiff = list[i + 1] - list[i];
+
+			// If this difference is less than the record minDiff, clear the
+			// solution vector, else just add the pair
 			if (tempDiff < minDiff){
 
 				minDiff = tempDiff;
