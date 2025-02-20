@@ -1,10 +1,15 @@
-// Challenge 04: Graph Paths
+/* Challenge 04: Graph Paths
+ *
+ * Elias Tessema NETID: CKL422
+ *
+ * This program will take a series of edges, and return whether 1 node
+ * has a path to another
+ *
+ */
 
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-
-// Main Execution
 
 class Node{
 	public:
@@ -18,6 +23,7 @@ class Node{
 		bool visited;
 };
 
+// This will be the directed graph structure
 class Graph{
 	public:
 		Graph(){};
@@ -27,6 +33,7 @@ class Graph{
 		void addPath(char a, char b){
 			Node *nodeA, *nodeB;
 
+			// For both chars, make a new Node if one doesn't exist in the graph
 			if (nodes.find(a) != nodes.end()) {
 				nodeA = nodes[a];
 			} else {
@@ -44,6 +51,7 @@ class Graph{
 			nodeA->paths.push_back(nodeB);
 		}
 
+		// Recursive search ends after all connected nodes have been observed
 		bool search(Node* node, char c){
 			if (node == NULL || node->visited){
 				return false;
@@ -70,6 +78,7 @@ class Graph{
 		bool findPath(char a, char b){
 			bool result = search (nodes[a], b);
 
+			// Restore visited state for next time
 			for (itr = nodes.begin(); itr != nodes.end(); ++itr){
 				itr->second->visited = false;
 			}
